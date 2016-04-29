@@ -1084,7 +1084,7 @@ def main():
 
     ANNOTS = readAnnots(args.config, args.assembly)
 
-    filename, extension = os.path.splittext(args.bedfile)
+    filename, extension = os.path.splitext(args.bedfile)
     if extension == '.gtf':
         gtf = open(args.bedfile, 'r')
         new_bed_path = filename + '.bed'
