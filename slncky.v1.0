@@ -1087,6 +1087,7 @@ def main():
 
     filename, extension = os.path.splitext(args.bedfile)
     if extension == '.gtf':
+        print "Converting GTF to BED12"
         gtf = open(args.bedfile, 'r')
         new_bed_path = filename + '.bed'
         bed_out = open(new_bed_path, 'w')
@@ -1095,6 +1096,7 @@ def main():
         gtf.close()
 
     if "GENOME_FA" in ANNOTS:
+        print "Checking bedfile " + args.bedfile
         checkBedMatchesFa(args.bedfile, ANNOTS)
 
     if "ORTHOLOG" in ANNOTS:
@@ -1110,7 +1112,7 @@ def main():
 
     #READ IN LNCS#
     lncs = {}
-
+    
     bed = open(args.bedfile, 'r')
     for line in bed.readlines():
         splitline = line.split()
