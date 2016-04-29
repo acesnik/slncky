@@ -1084,6 +1084,15 @@ def main():
 
     ANNOTS = readAnnots(args.config, args.assembly)
 
+    filename, extension = os.path.splittext(args.bedfile)
+    if extension == '.gtf':
+        gtf = open(args.bedfile, 'r')
+        new_bed_path = filename + '.bed'
+        bed_out = open(new_bed_path, 'w')
+        bed_out.write('\n'.join(gtf2bed(gtf)))
+        args.bedfile = new_bed_path
+        gtf.close()
+
     if "GENOME_FA" in ANNOTS:
         checkBedMatchesFa(args.bedfile, ANNOTS)
 
@@ -1101,11 +1110,8 @@ def main():
     #READ IN LNCS#
     lncs = {}
 
-    bedfile, extension = os.path.splittext(args.bedfile)
     bed = open(args.bedfile, 'r')
-    if extension == '.gtf': bedlines = gtf2bed(bed)
-    else: bedlines = bed.readlines()
-    for line in bedlines:
+    for line in bed.readlines():
         splitline = line.split()
         lncs[splitline[3].strip()] = line
     bed.close()
