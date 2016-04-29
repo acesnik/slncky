@@ -1013,6 +1013,7 @@ def gtf2bed(gtf):
                 print 'Error: non-number fields at gtf line ' + str(i)
     if len(exon_starts) != 0:
         bedlines.append(prepare_bed_line(exon_starts, exon_ends, fields, i))
+    return bedlines
 
 def main():
     parser = argparse.ArgumentParser(description='sLNCky: a lncRNA discovery software for lncRNA annotation and ortholog discovery.')
