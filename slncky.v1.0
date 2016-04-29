@@ -960,9 +960,9 @@ def prepare_bed_line(exon_starts, exon_ends, fields, nline):
     all_ids = {}
 
     #Use regex to get transcript_id, gene_id, expression level
-    gene_id = re.findall(r'gene_id \"([\w\.]+)\"', field[8])
-    trans_id = re.findall(r'transcript_id \"([\w\.]+)\"', field[8])
-    coverage_val = re.findall(r'cov \"([\d\.]+)\"', field[8])
+    gene_id = re.findall(r'gene_id \"([\w\.]+)\"', fields[8])
+    trans_id = re.findall(r'transcript_id \"([\w\.]+)\"', fields[8])
+    coverage_val = re.findall(r'cov \"([\d\.]+)\"', fields[8])
 
     if len(gene_id) != 0: gene_id = gene_id[0]
     if len(trans_id) != 0: trans_id = trans_id[0]
