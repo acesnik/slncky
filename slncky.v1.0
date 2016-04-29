@@ -154,6 +154,7 @@ def splitToExons(lncs):
 
     for lnc, line in lncs.iteritems():
         line = line.split()
+        print line
         chr = line[0]
         start = int(line[1])
         end = int(line[2])
@@ -973,7 +974,7 @@ def prepare_bed_line(exon_starts, exon_ends, fields, nline):
     else: all_ids[trans_id] = 1
     if len(coverage_val) == 0: fpkm_val = '100'
     else: fpkm_val = coverage_val[0]
-    coverage_int = round(float(fpkm_val)) #BED12 format requires integer score
+    coverage_int = int(round(float(fpkm_val))) #BED12 format requires integer score
 
     segment_lengths = ','.join(str(length) for length in [exon_ends[i] - exon_starts[i] for i in range(len(exon_starts))])
     segment_starts = ','.join(str(start) for start in [exon_starts[i] - exon_starts[0] for i in range(len(exon_starts))])
@@ -1112,7 +1113,7 @@ def main():
 
     #READ IN LNCS#
     lncs = {}
-    
+
     bed = open(args.bedfile, 'r')
     for line in bed.readlines():
         splitline = line.split()
